@@ -1,0 +1,80 @@
+{
+    "name": "alexbabintsev/laravel-nbu",
+    "description": "Official NBU (National Bank of Ukraine) exchange rates for Laravel: any date, cached until midnight, with a fallback when the bank is unreachable",
+    "keywords": [
+        "laravel",
+        "nbu",
+        "currency",
+        "currency-converter",
+        "exchange-rate",
+        "exchange-rates",
+        "ukraine",
+        "uah",
+        "hryvnia",
+        "bank"
+    ],
+    "homepage": "https://github.com/alexbabintsev/laravel-nbu",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Babintsev",
+            "email": "alexbabintsev@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/contracts": "^11.0||^12.0||^13.0",
+        "illuminate/http": "^11.0||^12.0||^13.0",
+        "illuminate/support": "^11.0||^12.0||^13.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.14",
+        "nunomaduro/collision": "^8.8",
+        "orchestra/testbench": "^9.0||^10.0||^11.0",
+        "pestphp/pest": "^3.0||^4.0",
+        "pestphp/pest-plugin-arch": "^3.0||^4.0",
+        "pestphp/pest-plugin-laravel": "^3.0||^4.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AlexBabintsev\\Nbu\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AlexBabintsev\\Nbu\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AlexBabintsev\\Nbu\\NbuServiceProvider"
+            ],
+            "aliases": {
+                "Nbu": "AlexBabintsev\\Nbu\\Facades\\Nbu"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
